@@ -1,22 +1,22 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import CompletedScreen from './CompletedScreen';
+
+const CompletedStack = createNativeStackNavigator();
 
 const CompletedStackScreen = () => {
   return (
-      <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
-        <View>
-          <Text>TodosStackScreen</Text>
-        </View>
-      </SafeAreaView>
-    );
-  };
-  
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#ffffffff',
-    },
-  });
+    <CompletedStack.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+      })}
+    >
+      <CompletedStack.Screen
+        name="completed-scree"
+        component={CompletedScreen}
+      />
+    </CompletedStack.Navigator>
+  );
+};
 
-export default CompletedStackScreen
+export default CompletedStackScreen;

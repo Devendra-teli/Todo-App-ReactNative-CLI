@@ -13,6 +13,7 @@ import CheckBox from '@react-native-community/checkbox';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import TodoCard from '../componets/TodoCard';
 type TodoStackParamList = {
   'todos-screen': undefined;
   'add-todo-screen': undefined;
@@ -21,7 +22,7 @@ type TodosScreenNavigationProp = NativeStackNavigationProp<TodoStackParamList>;
 
 const TodosScreen = () => {
   const navigation = useNavigation<TodosScreenNavigationProp>();
-  const [activeCategory, setActiveCategory] = useState('Work');
+  const [activeCategory, setActiveCategory] = useState('All');
   const [category, setCategory] = useState<any[]>([]);
   const [todos, setTodos] = useState<any[]>([]);
   const [filteredTodos, setFilteredTodos] = useState<any[]>([]);
@@ -62,9 +63,21 @@ const TodosScreen = () => {
     }
   };
 
-  const handleComplete = (newValue: any) => {
-    
-  }
+  const handleComplete = async (index: number, newValue: any) => {
+    todos.forEach((item, i) => {
+      if (i === index) {
+        item.completed = newValue;
+        console.log('item : ', item);
+      }
+    });
+
+    try {
+      await AsyncStorage.setItem('todos', JSON.stringify(todos));
+      getTodos();
+    } catch (error) {
+      Alert.alert('Error during change todo status');
+    }
+  };
 
   useEffect(() => {
     const res = ['All', 'Work', 'Personal', 'Wishlist', 'Birthday'];
@@ -115,27 +128,13 @@ const TodosScreen = () => {
           {filteredTodos.length > 0 ? (
             <View style={styles.todoBox}>
               {filteredTodos.map((item: any, index: number) => (
-                <View style={styles.todo} key={index}>
-                  <View style={styles.todoLeftSide}>
-                    <CheckBox
-                      value={item.completed || false}
-                      onValueChange={(newValue: any) => {
-                        handleComplete(newValue)
-                      }}
-                    />
-                    <Text>{item.title}</Text>
-                  </View>
-                  <TouchableOpacity
-                    style={styles.todoRightSide}
-                    onPress={() => handleDelete(index)}
-                  >
-                    <Ionicons
-                      name="trash-outline"
-                      size={20}
-                      color="#f76b6bff"
-                    />
-                  </TouchableOpacity>
-                </View>
+                <TodoCard
+                  item={item}
+                  index={index}
+                  key={index}
+                  handleComplete={handleComplete}
+                  handleDelete={handleDelete}
+                />
               ))}
             </View>
           ) : (
@@ -210,31 +209,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     gap: 10,
   },
-  todo: {
-    backgroundColor: '#eaf3ffff',
-    paddingVertical: 12,
-    paddingHorizontal: 15,
-    borderRadius: 8,
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  todoLeftSide: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
-  checkBox: {
-    width: 50,
-    height: 50,
-  },
-  todoRightSide: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
+
   noTodoBox: {
     flex: 1,
     display: 'flex',

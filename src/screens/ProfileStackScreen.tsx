@@ -1,22 +1,18 @@
-import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ProfileScreen from './ProfileScreen';
 
+const ProfileStack = createNativeStackNavigator();
 const ProfileStackScreen = () => {
   return (
-    <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
-      <View>
-        <Text>TodosStackScreen</Text>
-      </View>
-    </SafeAreaView>
+    <ProfileStack.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+      })}
+    >
+      <ProfileStack.Screen name="profile-screen" component={ProfileScreen} />
+    </ProfileStack.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffffffff',
-  },
-});
 
 export default ProfileStackScreen;
