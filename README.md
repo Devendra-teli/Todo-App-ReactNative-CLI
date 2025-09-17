@@ -1,7 +1,4 @@
 
-### 4️⃣ Full Example (Your README in Markdown)
-
-```markdown
 # React Native CLI Todo App
 
 This is a **Todo App** built with **React Native CLI**. It's my first mobile project where I learned and practiced the fundamentals of React Native development and core mobile app concepts.
@@ -35,12 +32,11 @@ Other features:
 - **Date Handling**: Calendar-based filtering  
 - **User Interaction**: Handling touch events, conditional rendering  
 
-## Screenshots
-*(Optional: Add screenshots of your app here)*  
+## Screenshots 
 
 ## Installation
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Devendra-teli/Todo-App-ReactNative-CLI.git
 cd todo_app
 npm install
 npx react-native run-android   # For Android
