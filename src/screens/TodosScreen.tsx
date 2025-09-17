@@ -5,11 +5,11 @@ import {
   TouchableOpacity,
   Image,
   Alert,
+  ScrollView,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@react-native-vector-icons/ionicons';
-import CheckBox from '@react-native-community/checkbox';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -43,7 +43,6 @@ const TodosScreen = () => {
     try {
       let existingTodos = await AsyncStorage.getItem('todos');
       if (existingTodos) {
-        console.log('existingTodos : ', existingTodos);
         setTodos(existingTodos ? JSON.parse(existingTodos) : []);
         setFilteredTodos(existingTodos ? JSON.parse(existingTodos) : []);
       }
@@ -57,7 +56,7 @@ const TodosScreen = () => {
     const filetedTodos = todos.filter((_, i) => i !== todoIndex);
     try {
       AsyncStorage.setItem('todos', JSON.stringify(filetedTodos));
-      setTodos(filetedTodos);
+      getTodos();
     } catch (error) {
       Alert.alert('Error : ', 'Error delete todo');
     }
@@ -99,28 +98,37 @@ const TodosScreen = () => {
         {/* Header category */}
         <View style={styles.header}>
           <View style={styles.categoriesContainer}>
-            {category.map((item: string) => (
-              <TouchableOpacity
-                style={[
-                  styles.categories,
-                  activeCategory === item ? styles.categoriesActive : '',
-                ]}
-                onPress={() => handleCategorySelect(item)}
-              >
-                <Text
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.categoriesContainer}
+            >
+              {category.map((item: string, index: number) => (
+                <TouchableOpacity
+                  key={index}
                   style={[
-                    styles.categoriesText,
-                    activeCategory === item ? styles.categoriesTextActive : '',
+                    styles.categories,
+                    activeCategory === item ? styles.categoriesActive : null,
                   ]}
+                  onPress={() => handleCategorySelect(item)}
                 >
-                  {item}
-                </Text>
-              </TouchableOpacity>
-            ))}
+                  <Text
+                    style={[
+                      styles.categoriesText,
+                      activeCategory === item
+                        ? styles.categoriesTextActive
+                        : null,
+                    ]}
+                  >
+                    {item}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
           </View>
-          <View style={styles.optionsBtnContainer}>
+          {/* <View style={styles.optionsBtnContainer}>
             <Ionicons name="ellipsis-vertical" size={20} color="#686767ff" />
-          </View>
+          </View> */}
         </View>
 
         {/* Todo Container */}

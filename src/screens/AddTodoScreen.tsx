@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 const AddTodoScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -35,9 +35,9 @@ const AddTodoScreen = () => {
     let newTodo = {
       title,
       description,
-      category: value,
+      category: value || 'All',
       completed: false,
-      createdAt: new Date(),
+      createdAt: new Date().toISOString().split('T')[0],
     };
 
     try {
@@ -52,7 +52,7 @@ const AddTodoScreen = () => {
       } else {
         await AsyncStorage.setItem('todos', JSON.stringify([newTodo]));
       }
-      navigation.goBack();
+      navigation.navigate('todos-screen');
     } catch (error) {
       Alert.alert('Error', 'Error in todo add');
     }

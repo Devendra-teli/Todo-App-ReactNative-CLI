@@ -26,10 +26,6 @@ const CompletedScreen = () => {
   };
 
   useEffect(() => {
-    console.log('todos : ', todos);
-  }, [todos]);
-
-  useEffect(() => {
     getCompletedTodos();
   }, []);
 
@@ -40,6 +36,7 @@ const CompletedScreen = () => {
         <View style={styles.todoContainer}>
           {todos.map((item, index) => (
             <TodoCard
+              key={index}
               item={item}
               index={index}
               handleComplete={() => {}}
