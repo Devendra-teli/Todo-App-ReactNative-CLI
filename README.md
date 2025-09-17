@@ -30,7 +30,7 @@ Other features:
 - **Navigation**: Stack Navigation, Bottom Tab Navigation  
 - **State Management**: `useState`, `useEffect` hooks  
 - **Storage & Data Persistence**: AsyncStorage  
-- **UI & Styling**: StyleSheet, Flexbox layouts, dynamic styling  
+- **UI & Styling**: StyleSheet
 - **Lists & Scrolls**: FlatList, ScrollView  
 - **Date Handling**: Calendar-based filtering  
 - **User Interaction**: Handling touch events, conditional rendering  
