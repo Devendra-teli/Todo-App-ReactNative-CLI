@@ -33,11 +33,11 @@ Other features:
 - **User Interaction**: Handling touch events, conditional rendering  
 
 ## Screenshots 
-<img width="260" height="500" alt="image" src="https://github.com/user-attachments/assets/4c62b2bf-deed-4789-909c-c3dde666b5f4" />
-<img width="260" height="500" alt="image" src="https://github.com/user-attachments/assets/dfecbc90-2ba6-441c-afa1-f6e111123d17" />
-<img width="260" height="500" alt="image" src="https://github.com/user-attachments/assets/4cde58f7-4d96-4f79-84ce-f503fcd4a718" />
-<img width="260" height="500" alt="image" src="https://github.com/user-attachments/assets/7f8b02e1-35fc-4208-8aec-652b9fd4651e" />
-<img width="260" height="500" alt="image" src="https://github.com/user-attachments/assets/0a807c3c-7a7b-4627-a9f7-4d7d933f973d" />
+<img width="258" height="500" alt="image" src="https://github.com/user-attachments/assets/4c62b2bf-deed-4789-909c-c3dde666b5f4" />
+<img width="258" height="500" alt="image" src="https://github.com/user-attachments/assets/dfecbc90-2ba6-441c-afa1-f6e111123d17" />
+<img width="258" height="500" alt="image" src="https://github.com/user-attachments/assets/4cde58f7-4d96-4f79-84ce-f503fcd4a718" />
+<img width="258" height="500" alt="image" src="https://github.com/user-attachments/assets/7f8b02e1-35fc-4208-8aec-652b9fd4651e" />
+<img width="258" height="500" alt="image" src="https://github.com/user-attachments/assets/0a807c3c-7a7b-4627-a9f7-4d7d933f973d" />
 
 
 
